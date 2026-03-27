@@ -9,7 +9,8 @@ phases:
     commands:
       - echo Build started
       - mvn clean package
+      - ls -l target
 
 artifacts:
   files:
-    - target/*.jar
+    - target/*.war
