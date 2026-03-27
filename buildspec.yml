@@ -3,14 +3,24 @@ version: 0.2
 phases:
   install:
     runtime-versions:
-      java: corretto17
+      java: java 21.0.10   # match your local Java version
+    commands:
+      - echo Installing dependencies...
+      - mvn --version      # check Maven version
+
+  pre_build:
+    commands:
+      - echo Pre-build started
 
   build:
     commands:
       - echo Build started
-      - mvn clean package
-      - ls -l target
+      - mvn clean package -B      # -B for non-interactive batch mode
+      - echo Listing target folder:
+      - ls -l target              # debug: see if WAR is generated
 
 artifacts:
   files:
-    - target/*.war
+    - target/*.war               # upload WAR if exists
+  discard-paths: yes             # optional, flatten paths
+  base-directory: target         # optional, upload from target folder
