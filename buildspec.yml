@@ -16,7 +16,7 @@ phases:
     commands:
       - echo Build started
       - mvn clean package -B
-      - echo Listing target folder:
+      - echo Listing target folder
       - ls -l target
 
 artifacts:
